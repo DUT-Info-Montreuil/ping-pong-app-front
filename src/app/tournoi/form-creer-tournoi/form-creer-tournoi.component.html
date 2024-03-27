@@ -1,1 +1,32 @@
-<p>form-creer-tournoi works!</p>
+<div class="container mt-5 justify-content-center">
+    <h1 class="d-flex justify-content-center"> Créer un tournoi individuel </h1>
+    <div class="w-50 mx-auto">
+      <form (ngSubmit)="addTournoi()">
+        <div class="mb-3">
+          <label for="format" class="form-label">Format</label>
+          <input type="text" class="form-control" id="format" name="format" [(ngModel)]="newTournoi.format">
+        </div>
+        <div class="mb-3">
+          <label for="niveau" class="form-label">Niveau</label>
+          <select class="form-select" id="niveau" name="niveau" [(ngModel)]="newTournoi.niveau">
+            <option value="Débutant">Débutant</option>
+            <option value="Intermédiaire">Intermédiaire</option>
+            <option value="Expert">Expert</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="date" class="form-label">Date</label>
+          <input type="date" class="form-control" id="date" name="date" [(ngModel)]="newTournoi.date">
+        </div>
+        <div class="mb-3">
+          <label for="duree" class="form-label">Durée</label>
+          <input type="time" class="form-control" id="duree" name="duree" [(ngModel)]="newTournoi.duree">
+        </div>
+        <div class="mb-3">
+          <label for="lieu" class="form-label">Lieu</label>
+          <input type="text" class="form-control" id="lieu" name="lieu" [(ngModel)]="newTournoi.lieu">
+        </div>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+      </form>
+    </div>
+</div>

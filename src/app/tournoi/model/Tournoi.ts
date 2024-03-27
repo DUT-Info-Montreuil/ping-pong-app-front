@@ -7,3 +7,12 @@ export interface Tournoi {
     lieu: string,
     status: boolean
 }
+
+export interface NewTournoi {
+    format: string,
+    niveau: string,
+    date: Date,
+    duree: string,
+    lieu: string,
+    status: boolean
+}
