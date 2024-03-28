@@ -13,9 +13,14 @@ import { Router } from '@angular/router';
 })
 export class JoueurListComponent implements OnInit {
 
-  constructor(private joueurService: JoueurService, private router: Router) {}
+  fichierSelectionne: File | null = null;
+  messageSucces: string = '';
+  afficherAlerte: boolean = false;
 
   joueurs: Joueur[] = [];
+  constructor(private joueurService: JoueurService, private router: Router) {}
+
+
 
   ngOnInit(): void {
    this.getAllJoueurs();
@@ -33,10 +38,31 @@ export class JoueurListComponent implements OnInit {
       }
     );
   }
-  
+
 
   onClickOpenDetails(joueur: Joueur): void {
     this.router.navigate(['/joueur',joueur._id]);
   }
-  
+
+  importerJoueurs(event: any): void {
+    this.fichierSelectionne = event.target.files[0];
+  }
+
+  executerImportation(): void {
+    if (!this.fichierSelectionne) return;
+    const formData: FormData = new FormData();
+    formData.append('fichier', this.fichierSelectionne, this.fichierSelectionne.name);
+    this.joueurService.ajouteJoueurDeFichier(formData).subscribe(reponse => {
+      this.afficherMessage('Les joueurs ont été importés avec succès.');
+      this.getAllJoueurs();
+    });
+    this.fichierSelectionne = null; // Réinitialisez la sélection du fichier après l'importation
+  }
+
+  afficherMessage(message: string) {
+    this.messageSucces = message;
+    this.afficherAlerte = true;
+    setTimeout(() => this.afficherAlerte = false, 3000); // Cache l'alerte après 3 secondes
+  }
+
 }

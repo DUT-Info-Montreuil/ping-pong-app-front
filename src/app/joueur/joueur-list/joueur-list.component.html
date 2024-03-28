@@ -21,3 +21,14 @@
         <button type="button" class="btn btn-outline-info" (click)="onClickOpenDetails(joueur)">Details</button>
     </div>
 </div>
+
+
+<div class="form-group mt-3">
+  <label for="fileInput" class="form-label">Importer des joueurs :</label>
+  <input type="file" id="fileInput" (change)="importerJoueurs($event)" accept=".csv" class="form-control">
+  <button *ngIf="fichierSelectionne" type="button" class="btn btn-success mt-2" (click)="executerImportation()">Importer le fichier</button>
+</div>
+<div *ngIf="afficherAlerte" class="alert alert-success mt-3" role="alert">
+  {{ messageSucces }}
+</div>
+

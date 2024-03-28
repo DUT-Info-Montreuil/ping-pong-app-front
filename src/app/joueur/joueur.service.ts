@@ -21,5 +21,9 @@ export class JoueurService {
   getJoueurById(id: string): Observable<Joueur> {
     return this.httpClient.get<Joueur>(`/api/joueurs/${id}`);
   }
-  
+
+  ajouteJoueurDeFichier(fichier: FormData): Observable<any> {
+    return this.httpClient.put('/api/joueurs/add_fichier', fichier);
+  }
+
 }
