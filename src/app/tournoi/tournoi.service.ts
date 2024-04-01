@@ -10,6 +10,6 @@ export class TournoiService {
   constructor(private httpClient: HttpClient) { }
 
   createTournoi(tournoi: NewTournoi) {
-    return this.httpClient.post<NewTournoi>("/api/tournois/add", tournoi);
+    return this.httpClient.post<NewTournoi>("/api/tournois", tournoi);
   }
 }
