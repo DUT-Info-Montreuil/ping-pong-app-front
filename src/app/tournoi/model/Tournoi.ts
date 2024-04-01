@@ -1,3 +1,4 @@
+import { Equipement } from "../../equipement/model/equipement"
 import { Match } from "../../match/model/Match"
 
 export interface Tournoi {
@@ -5,9 +6,10 @@ export interface Tournoi {
     format: string,
     niveau: string,
     date: string,
-    duree: string,
+    duree: number,
     lieu: string,
     matchs: Match[],
+    equipement: Equipement
     status: boolean
 }
 
@@ -18,5 +20,6 @@ export interface NewTournoi {
     duree: number,
     lieu: string,
     matchs: Match[],
+    equipement: Equipement|undefined,
     status: boolean
 }
