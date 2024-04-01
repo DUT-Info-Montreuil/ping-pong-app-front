@@ -106,7 +106,7 @@
         type="submit"
         class="btn btn-primary"
         (click)="avancerEtape()"
-        [disabled]="verifFormEtape1()"
+        [disabled]="verifEtape1()"
       >
         Suivant
       </button>
@@ -170,7 +170,7 @@
       <button type="submit" class="btn btn-primary" (click)="reculerEtape()">
         Revenir
       </button>
-      <button type="submit" class="btn btn-primary" (click)="avancerEtape()">
+      <button type="submit" class="btn btn-primary" (click)="avancerEtape()" [disabled]="verifEtape2()">
         Suivant
       </button>
     </div>

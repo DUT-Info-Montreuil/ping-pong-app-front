@@ -144,8 +144,12 @@ export class FormCreerTournoiComponent implements OnInit{
     );
   }
 
-  verifFormEtape1(): boolean { 
+  verifEtape1(): boolean { 
     return this.newTournoi.niveau === '' || this.newTournoi.duree === 0 || this.newTournoi.lieu === '';
+  }
+
+  verifEtape2(): boolean {
+    return this.newTournoi.equipement === undefined;
   }
 
   joueursMaxAtteint(): boolean {
