@@ -1,96 +1,286 @@
 <div class="container mt-5 justify-content-center">
+  <h1 class="d-flex justify-content-center">Créer un tournoi</h1>
 
-  <h1 class="d-flex justify-content-center"> Créer un tournoi individuel </h1>
-
-    <div *ngIf="etape===1">
-      <div class="position-relative m-4">
-        <div class="progress" role="progressbar" aria-label="Progress" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="height: 1px;">
-          <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
-        </div>
-        <button id="button1" type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 2rem; height:2rem;" (click)="updateProgress(1)">1</button>
-        <button id="button2" type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;" (click)="updateProgress(2)">2</button>
-        <button id="button3" type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;" (click)="updateProgress(3)">3</button>
+  <div *ngIf="etape === 1">
+    <div class="position-relative m-4">
+      <div
+        class="progress"
+        role="progressbar"
+        aria-label="Progress"
+        aria-valuenow="50"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        style="height: 1px"
+      >
+        <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
       </div>
-      <div class="w-50 mx-auto">
-        <form (ngSubmit)="addTournoi()">
-          <div class="mb-3">
-            <label for="format" class="form-label">Format</label>
-            <input type="text" class="form-control" id="format" name="format" [(ngModel)]="newTournoi.format" disabled>
-          </div>
-          <div class="mb-3">
-            <label for="niveau" class="form-label">Niveau</label>
-            <select class="form-select" id="niveau" name="niveau" [(ngModel)]="newTournoi.niveau">
-              <option value="Débutant">Débutant</option>
-              <option value="Intermédiaire">Intermédiaire</option>
-              <option value="Expert">Expert</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="date" class="form-label">Date</label>
-            <input type="date" class="form-control" id="date" name="date" [(ngModel)]="newTournoi.date">
-          </div>
-          <div class="mb-3">
-            <label for="duree" class="form-label">Durée</label>
-            <input type="time" class="form-control" id="duree" name="duree" [(ngModel)]="newTournoi.duree">
-          </div>
-          <div class="mb-3">
-            <label for="lieu" class="form-label">Lieu</label>
-            <input type="text" class="form-control" id="lieu" name="lieu" placeholder="Le lieu du tournoi" [(ngModel)]="newTournoi.lieu">
-          </div>
-        </form>
-        <button type="submit" class="btn btn-primary" (click)="avancerEtape()"> Suivant </button>
-      </div>
+      <button
+        id="button1"
+        type="button"
+        class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        1
+      </button>
+      <button
+        id="button2"
+        type="button"
+        class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-secondary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        2
+      </button>
+      <button
+        id="button3"
+        type="button"
+        class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        3
+      </button>
     </div>
-
-    <div *ngIf="etape===2">
-      <div class="position-relative m-4">
-        <div class="progress" role="progressbar" aria-label="Progress" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="height: 1px;">
-          <div id="progress-bar" class="progress-bar" style="width: 50%"></div>
+    <div class="w-50 mx-auto">
+      <form (ngSubmit)="addTournoi()">
+        <div class="mb-3">
+          <label for="format" class="form-label">Format</label>
+          <input
+            type="text"
+            class="form-control"
+            id="format"
+            name="format"
+            [(ngModel)]="newTournoi.format"
+            disabled
+          />
         </div>
-        <button id="button1" type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 2rem; height:2rem;" (click)="updateProgress(1)">1</button>
-        <button id="button2" type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 2rem; height:2rem;" (click)="updateProgress(2)">2</button>
-        <button id="button3" type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;" (click)="updateProgress(3)">3</button>
-      </div>
-      <div class="w-50 mx-auto">
-        <button type="submit" class="btn btn-primary" (click)="reculerEtape()"> Revenir </button>
-        <button type="submit" class="btn btn-primary" (click)="avancerEtape()"> Suivant </button>
-      </div>
+        <div class="mb-3">
+          <label for="niveau" class="form-label">Niveau</label>
+          <select
+            class="form-select"
+            id="niveau"
+            name="niveau"
+            [(ngModel)]="newTournoi.niveau"
+          >
+            <option value="Débutant">Débutant</option>
+            <option value="Intermédiaire">Intermédiaire</option>
+            <option value="Expert">Expert</option>
+            <option value="Mix">Mix</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="date" class="form-label">Date</label>
+          <input
+            type="date"
+            class="form-control"
+            id="date"
+            name="date"
+            [(ngModel)]="newTournoi.date"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="duree" class="form-label">Durée (en minute)</label>
+          <select
+            class="form-select"
+            id="duree"
+            name="duree"
+            [(ngModel)]="newTournoi.duree"
+          >
+            <option *ngFor="let duree of durees" [value]="duree">
+              {{ duree }}
+            </option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="lieu" class="form-label">Lieu</label>
+          <select
+            class="form-select"
+            id="lieu"
+            name="lieu"
+            [(ngModel)]="newTournoi.lieu"
+          >
+            <option value="Salle de sport">Salle de sport</option>
+            <option value="Salle polyvalente">Salle polyvalente</option>
+          </select>
+        </div>
+      </form>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="avancerEtape()"
+        [disabled]="verifFormEtape1()"
+      >
+        Suivant
+      </button>
     </div>
+  </div>
 
-    <div *ngIf="etape===3">
-      <div class="position-relative m-4">
-        <div class="progress" role="progressbar" aria-label="Progress" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="height: 1px;">
-          <div id="progress-bar" class="progress-bar" style="width: 100%"></div>
-        </div>
-        <button id="button1" type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 2rem; height:2rem;" (click)="updateProgress(1)">1</button>
-        <button id="button2" type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 2rem; height:2rem;" (click)="updateProgress(2)">2</button>
-        <button id="button3" type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 2rem; height:2rem;" (click)="updateProgress(3)">3</button>
+  <div *ngIf="etape === 2">
+    <div class="position-relative m-4">
+      <div
+        class="progress"
+        role="progressbar"
+        aria-label="Progress"
+        aria-valuenow="50"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        style="height: 1px"
+      >
+        <div id="progress-bar" class="progress-bar" style="width: 50%"></div>
       </div>
-      <div class="w-50 mx-auto">
-        <p> Algo match </p>
-        <button type="submit" class="btn btn-primary" (click)="reculerEtape()"> Revenir </button>   
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-          Créer le tournoi
-        </button>
-      </div>
-     
-      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel"> Validation de la création du tournoi </h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              Créer le tournoi ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-              <button type="button" class="btn btn-primary" (click)="addTournoi()">Confirmer la création</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      
+      <button
+        id="button1"
+        type="button"
+        class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        1
+      </button>
+      <button
+        id="button2"
+        type="button"
+        class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-primary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        2
+      </button>
+      <button
+        id="button3"
+        type="button"
+        class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        3
+      </button>
     </div>
+    <div class="w-50 mx-auto">
+      <ul class="list-group">
+        <div *ngFor="let equipement of equipements">
+          <li class="list-group-item">
+            Nombre de table : {{ equipement.table.quantite }}
+            Nombre de balle : {{ equipement.balle.quantite }}
+            <button
+                type="submit"
+                class="btn btn-primary"
+                (click)="addEquipementTournoi(equipement)"
+              >
+                Louer
+              </button>
+          </li>
+        </div>
+      </ul>
+      <button type="submit" class="btn btn-primary" (click)="reculerEtape()">
+        Revenir
+      </button>
+      <button type="submit" class="btn btn-primary" (click)="avancerEtape()">
+        Suivant
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="etape === 3">
+    <div class="position-relative m-4">
+      <div
+        class="progress"
+        role="progressbar"
+        aria-label="Progress"
+        aria-valuenow="50"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        style="height: 1px"
+      >
+        <div id="progress-bar" class="progress-bar" style="width: 100%"></div>
+      </div>
+      <button
+        id="button1"
+        type="button"
+        class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        1
+      </button>
+      <button
+        id="button2"
+        type="button"
+        class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-primary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        2
+      </button>
+      <button
+        id="button3"
+        type="button"
+        class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-primary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        3
+      </button>
+    </div>
+    <div class="w-50 mx-auto">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Niveau</th>
+            <th scope="col">Age</th>
+            <th scope="col">Sexe</th>
+            <th scope="col">Points</th>
+            <th scope="col">Ajouter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let joueur of joueursTab; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ joueur.nom }}</td>
+            <td>{{ joueur.prenom }}</td>
+            <td>{{ joueur.categorie.niveau }}</td>
+            <td>{{ joueur.categorie.age }}</td>
+            <td>{{ joueur.sexe }}</td>
+            <td>{{ joueur.point }}</td>
+            <td>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                (click)="addJoueurToTournoi(joueur)"
+                [disabled]="joueursMaxAtteint()"
+              >
+                Ajouter
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="d-flex justify-content-between p-2">
+        <ngb-pagination
+          [collectionSize]="collectionSize"
+          [(page)]="page"
+          [pageSize]="pageSize"
+          (pageChange)="refreshPaginations()"
+        >
+        </ngb-pagination>
+      </div>
+
+      <div *ngIf="joueurs_tournoi.length > 0">
+        <h5>Ma liste de joueur(s)</h5>
+        <div
+          class="list-group"
+          *ngFor="let joueur of joueurs_tournoi; let i = index"
+        >
+          <button type="button" class="list-group-item list-group-item-action" (click)="retirerJoueurDansTournoi(joueur)">
+            {{ joueur.nom }} {{ joueur.prenom }}  {{ joueur.categorie.niveau }} {{ joueur.categorie.age }} an {{ joueur.sexe }} Point : {{ joueur.point }}
+          </button>
+        </div>
+      </div>
+
+      <br />
+
+      <button type="submit" class="btn btn-primary" (click)="reculerEtape()">
+        Revenir
+      </button>
+      <button type="button" class="btn btn-primary" (click)="addTournoi()">
+        Ajouter le tournoi
+      </button>
+    </div>
+  </div>
 </div>
