@@ -56,13 +56,13 @@ export class JoueurListComponent implements OnInit {
       this.afficherMessage('Les joueurs ont été importés avec succès.');
       this.getAllJoueurs();
     });
-    this.fichierSelectionne = null; // Réinitialisez la sélection du fichier après l'importation
+    this.fichierSelectionne = null;
   }
 
   afficherMessage(message: string) {
     this.messageSucces = message;
     this.afficherAlerte = true;
-    setTimeout(() => this.afficherAlerte = false, 3000); // Cache l'alerte après 3 secondes
+    setTimeout(() => this.afficherAlerte = false, 3000);
   }
 
 }
