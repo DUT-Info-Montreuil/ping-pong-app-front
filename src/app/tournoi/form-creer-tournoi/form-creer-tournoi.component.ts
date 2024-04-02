@@ -9,6 +9,7 @@ import { JoueurService } from '../../joueur/joueur.service';
 import { Joueur } from '../../joueur/model/Joueur';
 import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatchService } from '../../match/match.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-creer-tournoi',
@@ -43,14 +44,12 @@ export class FormCreerTournoiComponent implements OnInit{
     status: false
   };
 
-  constructor(private tournoiService: TournoiService, private equipementService: EquipementService, private joueurService: JoueurService, private matchService: MatchService) {
+  constructor(private tournoiService: TournoiService, private equipementService: EquipementService, private joueurService: JoueurService, private matchService: MatchService, private router: Router) {
     this.refreshPaginations();
   }
 
   ngOnInit(): void {
     this.getAllEquipements();
-    this.getAllJoueurs();
-    console.log(this.newTournoi.date.toLocaleString().split(',')[0]);
   }
 
   updateProgress(etape: number): void {
@@ -76,7 +75,7 @@ export class FormCreerTournoiComponent implements OnInit{
   }
 
   getAllJoueurs() {
-    this.joueurService.getAllJoueurs().subscribe(
+    this.joueurService.getAllJoueursFiltre(this.newTournoi.niveau).subscribe(
       (next) => {
         this.joueurs = next;
         this.collectionSize = this.joueurs.length;
@@ -90,21 +89,13 @@ export class FormCreerTournoiComponent implements OnInit{
   addTournoi() {
     this.matchService.creerMatchsAleatoire(this.joueurs_tournoi,this.newTournoi.equipement, this.newTournoi.duree).subscribe(
       (response: any) => {
-        console.log(response);
         this.newTournoi.matchs = response.matchs;
         this.tournoiService.createTournoi(this.newTournoi).subscribe(
-          (next) => {
-            this.newTournoi = {
-              format: 'Solo',
-              niveau: '',
-              date: new Date().toLocaleString().split(',')[0],
-              duree: 0,
-              lieu: '',
-              matchs: [],
-              equipement: undefined,
-              status: false
-            };
-            this.etape = 1;
+          (next: any) => {
+            console.log(next);
+            this.router.navigate(['/success'], { queryParams: { message: next.message } });
+          },(error) => {
+            console.log(error);
           }
         )
       }
@@ -154,6 +145,14 @@ export class FormCreerTournoiComponent implements OnInit{
 
   joueursMaxAtteint(): boolean {
     return this.joueurs_tournoi.length == (this.newTournoi.duree / 5) * 2;
+  }
+
+  getJoueursMax(): number {
+    return (this.newTournoi.duree / 5) * 2;
+  }
+
+  verifJoueursPair(): boolean {
+    return this.joueurs_tournoi.length %2 != 0 || this.joueurs_tournoi.length == 0;
   }
   
 }

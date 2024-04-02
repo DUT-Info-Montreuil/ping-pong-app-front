@@ -40,6 +40,9 @@
       </button>
     </div>
     <div class="w-50 mx-auto">
+      <div *ngIf="verifEtape1()" class="alert alert-danger" role="alert">
+        Compléter les informations suivantes : Niveau, Date, Durée et Lieu
+      </div>
       <form (ngSubmit)="addTournoi()">
         <div class="mb-3">
           <label for="format" class="form-label">Format</label>
@@ -59,11 +62,12 @@
             id="niveau"
             name="niveau"
             [(ngModel)]="newTournoi.niveau"
+            (change)="getAllJoueurs()"
           >
             <option value="Débutant">Débutant</option>
             <option value="Intermédiaire">Intermédiaire</option>
             <option value="Expert">Expert</option>
-            <option value="Mix">Mix</option>
+            <option value="Mixte">Mixte</option>
           </select>
         </div>
         <div class="mb-3">
@@ -152,25 +156,36 @@
       </button>
     </div>
     <div class="w-50 mx-auto">
+      <div class="alert alert-info" role="alert">
+        Pour ajouter l'équipement au tournoi, appuyez sur le bouton 'louer'.
+      </div>
+
       <ul class="list-group">
         <div *ngFor="let equipement of equipements">
           <li class="list-group-item">
-            Nombre de table : {{ equipement.table.quantite }}
-            Nombre de balle : {{ equipement.balle.quantite }}
+            Nombre de table : {{ equipement.table.quantite }} Nombre de balle :
+            {{ equipement.balle.quantite }}
             <button
-                type="submit"
-                class="btn btn-primary"
-                (click)="addEquipementTournoi(equipement)"
-              >
-                Louer
-              </button>
+              type="submit"
+              class="btn btn-primary"
+              (click)="addEquipementTournoi(equipement)"
+              [disabled]="!verifEtape2()"
+            >
+              Louer
+            </button>
           </li>
         </div>
       </ul>
+      <br />
       <button type="submit" class="btn btn-primary" (click)="reculerEtape()">
         Revenir
       </button>
-      <button type="submit" class="btn btn-primary" (click)="avancerEtape()" [disabled]="verifEtape2()">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="avancerEtape()"
+        [disabled]="verifEtape2()"
+      >
         Suivant
       </button>
     </div>
@@ -215,6 +230,17 @@
       </button>
     </div>
     <div class="w-50 mx-auto">
+      <div class="alert alert-info" role="alert">
+        Appuyez sur 'ajouter' pour que le joueur puisse participer au tournoi.
+        (Le nombre maximal de joueur pouvant etre choisi est de :
+        {{ getJoueursMax() }})
+      </div>
+
+      <div *ngIf="verifJoueursPair()" class="alert alert-danger" role="alert">
+        Le nombre de joueur(s) choisi doit etre paire afin que tout les matchs
+        puissent etre effectué !
+      </div>
+
       <table class="table table-striped">
         <thead>
           <tr>
@@ -263,12 +289,22 @@
 
       <div *ngIf="joueurs_tournoi.length > 0">
         <h5>Ma liste de joueur(s)</h5>
+        <div class="alert alert-warning" role="alert">
+          Cliquez sur un joueur pour le retiré de la liste.
+        </div>
+
         <div
           class="list-group"
           *ngFor="let joueur of joueurs_tournoi; let i = index"
         >
-          <button type="button" class="list-group-item list-group-item-action" (click)="retirerJoueurDansTournoi(joueur)">
-            {{ joueur.nom }} {{ joueur.prenom }}  {{ joueur.categorie.niveau }} {{ joueur.categorie.age }} an {{ joueur.sexe }} Point : {{ joueur.point }}
+          <button
+            type="button"
+            class="list-group-item list-group-item-action"
+            (click)="retirerJoueurDansTournoi(joueur)"
+          >
+            {{ joueur.nom }} {{ joueur.prenom }} {{ joueur.categorie.niveau }}
+            {{ joueur.categorie.age }} an {{ joueur.sexe }} Point :
+            {{ joueur.point }}
           </button>
         </div>
       </div>
@@ -278,7 +314,12 @@
       <button type="submit" class="btn btn-primary" (click)="reculerEtape()">
         Revenir
       </button>
-      <button type="button" class="btn btn-primary" (click)="addTournoi()">
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="addTournoi()"
+        [disabled]="verifJoueursPair()"
+      >
         Ajouter le tournoi
       </button>
     </div>
