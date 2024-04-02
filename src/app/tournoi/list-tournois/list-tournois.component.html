@@ -1,14 +1,19 @@
 <div class="container">
     <div class="rectangle-rouge text-center mt-5">
-        <h1 class="fst-italic fw-bold"> NOS DIFFERENTS TOURNOI </h1>
+        <h1 class="fst-italic fw-bold">NOS DIFFERENTS TOURNOI</h1>
     </div>
-    <div class="mt-5"> 
-        <div class="card text-bg-light mb-3" style="max-width: 18rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-            <h5 class="card-title">Light card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>      
+    <div class="row mt-5"> 
+        <div *ngFor="let tournoi of liste_tournoi; let i = index" class="col-md-3">
+            <div class="card text-bg-light mb-3 text-center" style="max-width: 18rem;">
+                <div class="card-header">Tournoi</div>
+                <div class="card-body">
+                    <h5 class="card-title">Format : {{ tournoi.format }}</h5>
+                    <p class="card-text"> Niveau : {{ tournoi.niveau }}</p>
+                    <p class="card-text"> Date : {{ tournoi.date }}</p>
+                    <p class="card-text"> Lieu : {{ tournoi.lieu }}</p>
+                    <button type="submit" class="btn btn-primary" (click)="redirectToDetails(tournoi)"> Afficher tournoi </button>
+                </div>
+            </div>      
+        </div>
     </div>
 </div>

@@ -5,6 +5,7 @@ import { DetailsJoueurComponent } from './joueur/details-joueur/details-joueur.c
 import { FormCreerTournoiComponent } from './tournoi/form-creer-tournoi/form-creer-tournoi.component';
 import { ResponseComponent } from './response/response/response.component';
 import { ListTournoisComponent } from './tournoi/list-tournois/list-tournois.component';
+import { DetailsTournoiComponent } from './tournoi/details-tournoi/details-tournoi.component';
 
 
 export const routes: Routes = [
@@ -13,5 +14,6 @@ export const routes: Routes = [
     { path: 'joueur/:id', component: DetailsJoueurComponent},
     { path: 'form-tournoi', component: FormCreerTournoiComponent},
     { path: 'success', component: ResponseComponent},
-    { path: 'liste-tournoi', component: ListTournoisComponent}
+    { path: 'liste-tournoi', component: ListTournoisComponent},
+    { path: 'tournoi/:id', component: DetailsTournoiComponent}
 ];
