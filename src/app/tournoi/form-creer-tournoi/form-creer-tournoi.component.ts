@@ -106,6 +106,10 @@ export class FormCreerTournoiComponent implements OnInit{
     this.newTournoi.equipement = equipement;
   }
 
+  retirerEquipementTournoi(): void {
+    this.newTournoi.equipement = undefined;
+  }
+
   addJoueurToTournoi(joueur: Joueur): void {
     this.joueurs_tournoi.push(joueur);
     console.log(this.joueurs_tournoi);
