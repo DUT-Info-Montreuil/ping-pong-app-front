@@ -21,5 +21,9 @@ export class JoueurService {
   getJoueurById(id: string): Observable<Joueur> {
     return this.httpClient.get<Joueur>(`/api/joueurs/${id}`);
   }
-  
+
+  getAllJoueursFiltre(niveau: string): Observable<Joueur[]> {
+    return this.httpClient.get<Joueur[]>(`/api/joueurs/filtre?niveau=${niveau}`);
+  }
+
 }
