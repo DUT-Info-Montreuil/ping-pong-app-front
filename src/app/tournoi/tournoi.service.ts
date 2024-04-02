@@ -17,4 +17,8 @@ export class TournoiService {
   getListTournois(): Observable<Tournoi[]> {
     return this.httpClient.get<Tournoi[]>("/api/tournois");
   }
+
+  getTournoiById(id: string): Observable<Tournoi> {
+    return this.httpClient.get<Tournoi>(`/api/tournois/${id}`);
+  }
 }
