@@ -16,8 +16,18 @@ export class ListTournoisComponent implements OnInit {
   constructor(private tournoiService: TournoiService) {}
 
   ngOnInit(): void {
-    
+    this.getAllTournois();
   }
 
+  getAllTournois() {
+    this.tournoiService.getListTournois().subscribe(
+      tounois => {
+        this.liste_tournoi = tounois;
+        console.log(this.liste_tournoi);
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
 
 }
