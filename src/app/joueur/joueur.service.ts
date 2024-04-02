@@ -22,6 +22,11 @@ export class JoueurService {
     return this.httpClient.get<Joueur>(`/api/joueurs/${id}`);
   }
 
+  getAllJoueursFiltre(niveau: string): Observable<Joueur[]> {
+    return this.httpClient.get<Joueur[]>(`/api/joueurs/filtre?niveau=${niveau}`);
+  }
+
+
   ajouteJoueurDeFichier(fichier: FormData): Observable<any> {
     return this.httpClient.put('/api/joueurs/add_fichier', fichier);
   }
