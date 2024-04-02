@@ -2,7 +2,8 @@ import { Joueur } from "../../joueur/model/Joueur";
 
 export interface Match {
     _id: string,
-    joueurs_tournoi: Joueur[],
+    joueur_1: Joueur,
+    joueur_2: Joueur,
     duree: number,
     resultat: number
 }

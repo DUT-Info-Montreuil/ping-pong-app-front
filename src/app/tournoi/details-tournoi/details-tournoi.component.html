@@ -1,3 +1,60 @@
-<p>
-    {{ tournoi?._id }}
-</p>
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
+	<li [ngbNavItem]="1">
+		<button ngbNavLink> Information du tournoi </button>
+		<ng-template ngbNavContent>
+            <div class="container mt-5">
+                <h1> Détails du tournoi </h1>
+                <p> Format : {{ tournoi?.format }} </p>
+                <p> Niveau : {{ tournoi?.niveau }} </p>
+                <p> Date : {{ tournoi?.date }} </p>
+                <p> Durée du tournoi : {{ tournoi?.duree }} minutes </p>
+                <p> Nombre de match : {{ tournoi?.matchs?.length }}</p>
+                <p> Lieu : {{ tournoi?.lieu }} </p>
+            </div>
+		</ng-template>
+	</li>
+	<li [ngbNavItem]="2">
+		<button ngbNavLink> Les matchs du tournoi </button>
+		<ng-template ngbNavContent>
+			<div class="container">
+                <div *ngFor="let match of tournoi?.matchs; let i = index">
+                    <h1> Match numéro : {{ i+1 }}</h1>
+                    <p> Joueurs du match : {{ match.joueur_1.nom }} {{ match.joueur_1.prenom }} CONTRE {{ match.joueur_2.nom}} {{ match.joueur_2.prenom }} </p>
+                    <p> Durée : {{ match.duree }} minutes </p>
+                    <div class="text-danger" *ngIf="match.resultat==0">
+                        Résultat : le match n'a pas encore commencé
+                    </div>
+                </div>
+            </div>
+		</ng-template>
+	</li>
+	<li [ngbNavItem]="3">
+		<button ngbNavLink>Les équipements</button>
+		<ng-template ngbNavContent>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <h5 class="card-title">Table de ping-pong</h5>
+                    <p class="card-text">Quantité : {{ tournoi?.equipement?.table?.quantite }} </p>
+                    <p class="card-text text-success">Etat : {{ tournoi?.equipement?.table?.etat }} </p>
+                </li>
+                <li class="list-group-item">
+                    <h5 class="card-title">Balle</h5>
+                    <p class="card-text">Quantité : {{ tournoi?.equipement?.balle?.quantite }} </p>
+                    <p class="card-text text-success">Etat : {{ tournoi?.equipement?.balle?.etat }} </p>
+                </li>
+                <li class="list-group-item">
+                    <h5 class="card-title">Fillet</h5>
+                    <p class="card-text">Quantité : {{ tournoi?.equipement?.fillet?.quantite }} </p>
+                    <p class="card-text text-success">Etat : {{ tournoi?.equipement?.fillet?.etat }} </p>
+                </li>
+                <li class="list-group-item">
+                    <h5 class="card-title">Marqueur</h5>
+                    <p class="card-text">Quantité : {{ tournoi?.equipement?.marqueur?.quantite }} </p>
+                    <p class="card-text text-success">Etat : {{ tournoi?.equipement?.marqueur?.etat }} </p>
+                </li>
+              </ul> 
+		</ng-template>
+	</li>
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
