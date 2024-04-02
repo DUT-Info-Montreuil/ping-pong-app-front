@@ -8,10 +8,18 @@ import { Observable } from 'rxjs';
 })
 export class EquipementService {
 
-  constructor(private httpClient: HttpClient) { }
 
-  getAllEquipement(): Observable<Equipement[]> {
-    return this.httpClient.get<Equipement[]>("/api/equipement");
+  private apiUrl = '/api/equipement';
+
+  constructor(private http: HttpClient) { }
+
+  getEquipementService(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
   }
-  
+
+
+  modifierEquipement(idEquipement: string, donneesEquipement: any): Observable<any> {
+    return this.http.put(`/api/equipement/${idEquipement}`, donneesEquipement);
+  }
+
 }
