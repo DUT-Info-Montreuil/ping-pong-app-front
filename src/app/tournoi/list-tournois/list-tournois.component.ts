@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { TournoiService } from '../tournoi.service';
 import { Tournoi } from '../model/Tournoi';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-tournois',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, NgIf],
   templateUrl: './list-tournois.component.html',
   styleUrl: './list-tournois.component.css'
 })
