@@ -1,5 +1,5 @@
 <ul ngbNav #nav="ngbNav" class="nav-tabs">
-	<li [ngbNavItem]="1">
+	<li ngbNavItem>
 		<button ngbNavLink> Information du tournoi </button>
 		<ng-template ngbNavContent>
             <div class="container mt-5">
@@ -13,7 +13,7 @@
             </div>
 		</ng-template>
 	</li>
-	<li [ngbNavItem]="2">
+	<li ngbNavItem>
 		<button ngbNavLink> Les matchs du tournoi </button>
 		<ng-template ngbNavContent>
 			<div class="container">
@@ -28,7 +28,7 @@
             </div>
 		</ng-template>
 	</li>
-	<li [ngbNavItem]="3">
+	<li ngbNavItem>
 		<button ngbNavLink>Les équipements</button>
 		<ng-template ngbNavContent>
             <ul class="list-group">
@@ -55,6 +55,21 @@
               </ul> 
 		</ng-template>
 	</li>
+    <li *ngIf="!tournoi?.status" ngbNavItem>
+        <button ngbNavLink>Lancer tournoi</button>
+        <ng-template ngbNavContent>
+            <div class="card" style="width: 550px;">
+                <div class="card-header">
+                    Lancement du tournoi
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Voulez-vous commencer le tournoi ?</h5>
+                    <p class="card-text">Veuillez confirmer si vous souhaitez démarrer le tournoi.</p>
+                    <button type="button" class="btn btn-primary">Commencer le tournoi</button>
+                </div>
+            </div>            
+        </ng-template>
+    </li>
 </ul>
 
 <div [ngbNavOutlet]="nav" class="mt-2"></div>
