@@ -4,20 +4,10 @@
 
 <div class="d-flex justify-content-center mt-3">
     <div *ngFor="let joueur of joueurs" class="m-3">
-        <p>_id: {{ joueur._id }}</p>
         <p>Nom: {{ joueur.nom }}</p>
-        <p>Prénom: {{ joueur.prenom }}</p>
-        <p>Catégorie:</p>
-        <ul>
-            <li>
-                Age: {{ joueur.categorie.age }}
-            </li>
-            <li>
-                Niveau: {{ joueur.categorie.niveau }}
-            </li>
-        </ul>
+        <p>Prénom: {{ joueur.prenom }}</p> 
+        <p>Niveau: {{ joueur.categorie.niveau }} </p>
         <p>Sexe: {{ joueur.sexe }}</p>
-        <p>Point: {{ joueur.point }}</p>
         <button type="button" class="btn btn-outline-info" (click)="onClickOpenDetails(joueur)">Details</button>
     </div>
 </div>
