@@ -1,28 +1,35 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div *ngFor="let match of tournoi?.matchs">
-                <div *ngIf="match" class="card mb-3">
-                    <div class="card-header text-center">
-                        Score 
-                        <br>
-                        {{ match.scoreJ1 }} - {{ match.scoreJ2 }}
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                {{ match.joueur_1.nom }} {{ match.joueur_1.prenom }}
+        <div class="col-md-8">
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                <div *ngFor="let match of tournoi?.matchs" class="col-md-3">
+                    <div *ngIf="match" class="card mb-3">
+                        <div class="card-header text-center">
+                            Score 
+                            <br>
+                            {{ match.scoreJ1 }} - {{ match.scoreJ2 }}
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    {{ match.joueur_1.nom }} {{ match.joueur_1.prenom }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-center">VS</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    {{ match.joueur_2.nom }} {{ match.joueur_2.prenom }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <br>
+                                    <button *ngIf="match.resultat==0" type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal' + match._id" (click)="resetMessage()">Modifier</button> 
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12 text-center">VS</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                {{ match.joueur_2.nom }} {{ match.joueur_2.prenom }}
-                            </div>
-                        </div>
-                        <button *ngIf="match.resultat==0" type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal' + match._id" (click)="resetMessage()">Modifier</button> 
                     </div>
                 </div>
             </div>
