@@ -53,6 +53,11 @@ export class DetailsTournoiComponent {
       console.log('ID ou tournoi est undefined.');
     }
   }
-  
 
+  accederAuTournoi(tournoi: Tournoi|undefined) {
+    if(tournoi) {
+      this.router.navigate(['/visualiser-tournoi', tournoi._id]);
+    }
+  }
+  
 }

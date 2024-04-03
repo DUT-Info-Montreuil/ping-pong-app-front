@@ -10,6 +10,9 @@
                 <p> Durée du tournoi : {{ tournoi?.duree }} minutes </p>
                 <p> Nombre de match : {{ tournoi?.matchs?.length }}</p>
                 <p> Lieu : {{ tournoi?.lieu }} </p>
+                <div *ngIf="tournoi?.status">  
+                    <button type="button" class="btn btn-primary" (click)="accederAuTournoi(tournoi)"> Visualiser le tournoi </button> 
+                </div>
             </div>
 		</ng-template>
 	</li>
