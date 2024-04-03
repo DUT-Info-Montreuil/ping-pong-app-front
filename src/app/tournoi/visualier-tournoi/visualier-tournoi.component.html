@@ -1,0 +1,65 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div *ngFor="let match of tournoi?.matchs">
+                <div *ngIf="match" class="card mb-3">
+                    <div class="card-header text-center">
+                        Score 
+                        <br>
+                        {{ match.scoreJ1 }} - {{ match.scoreJ2 }}
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                {{ match.joueur_1.nom }} {{ match.joueur_1.prenom }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-center">VS</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                {{ match.joueur_2.nom }} {{ match.joueur_2.prenom }}
+                            </div>
+                        </div>
+                        <button *ngIf="match.resultat==0" type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal' + match._id" (click)="resetMessage()">Modifier</button> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngFor="let match of tournoi?.matchs">
+    <div class="modal fade" id="exampleModal{{ match._id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier match</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div *ngIf="!isValidScore(match.scoreJ2) || !isValidScore(match.scoreJ1)" class="text-danger">Veuillez saisir un nombre entre 0 et 11</div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="scoreJ1" placeholder="Score joueur 1" [(ngModel)]="match.scoreJ1" min="0" max="11">
+                        <label for="floatingInput">Score joueur 1</label>
+                    </div>                    
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="scoreJ2" placeholder="Score joueur 2" [(ngModel)]="match.scoreJ2" min="0" max="11">
+                        <label for="floatingPassword">Score joueur 2</label>
+                    </div>
+                    <div *ngIf='message!=""'>
+                        <div class="alert alert-success" role="alert">
+                            {{ message }}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary" [disabled]="!isValidScore(match.scoreJ2) || !isValidScore(match.scoreJ1)" (click)="updateScore(match)">Confirmer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
