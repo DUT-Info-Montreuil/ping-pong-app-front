@@ -21,4 +21,8 @@ export class TournoiService {
   getTournoiById(id: string): Observable<Tournoi> {
     return this.httpClient.get<Tournoi>(`/api/tournois/${id}`);
   }
+
+  updateStatusTournoi(id: string|undefined, tournoi:NewTournoi) {
+    return this.httpClient.put<Tournoi>(`/api/tournois/${id}`, tournoi);
+  }
 }
