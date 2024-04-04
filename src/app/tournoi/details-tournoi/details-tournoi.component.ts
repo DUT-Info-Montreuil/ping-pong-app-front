@@ -39,7 +39,8 @@ export class DetailsTournoiComponent {
           lieu: tournoi.lieu,
           matchs: tournoi.matchs,
           equipement: tournoi.equipement,
-          status: true
+          status: true,
+          gagnant: undefined
       }
       this.tournoiService.updateStatusTournoi(tournoi._id, updatedTournoi).subscribe(
         (update: any) => {

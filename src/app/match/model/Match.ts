@@ -7,7 +7,8 @@ export interface Match {
     duree: number,
     resultat: number
     scoreJ1: number,
-    scoreJ2: number
+    scoreJ2: number,
+    vainqueur: Joueur
 }
 
 export interface NewMatch {
@@ -16,5 +17,6 @@ export interface NewMatch {
     duree: number,
     resultat: number
     scoreJ1: number,
-    scoreJ2: number
+    scoreJ2: number,
+    vainqueur: Joueur
 }

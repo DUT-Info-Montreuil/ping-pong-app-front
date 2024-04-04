@@ -41,7 +41,8 @@ export class FormCreerTournoiComponent implements OnInit{
     lieu: '',
     matchs: [],
     equipement: undefined,
-    status: false
+    status: false,
+    gagnant: undefined
   };
 
   constructor(private tournoiService: TournoiService, private equipementService: EquipementService, private joueurService: JoueurService, private matchService: MatchService, private router: Router) {
