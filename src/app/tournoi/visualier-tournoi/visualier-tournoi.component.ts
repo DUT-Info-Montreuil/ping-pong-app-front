@@ -147,6 +147,7 @@ export class VisualierTournoiComponent {
       this.tournoiService.updateGagnantTournoi(idTournoi, this.tournoi).subscribe(
         (response: any) => {
           console.log(response.message);
+          window.location.reload();
         },
         (error) => {
           console.error(error);

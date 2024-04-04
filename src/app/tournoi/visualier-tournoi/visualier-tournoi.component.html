@@ -58,7 +58,15 @@
     </li>
     <button *ngIf="rounds.length < roundMax()" [disabled]="matchsEnCours" (click)="nouveauRound()" type="button" class="btn btn-primary">Nouveau round</button> 
     <button *ngIf="rounds.length===roundMax() && tournoi?.gagnant == undefined" [disabled]="matchsEnCours" type="button" class="btn btn-primary" (click)="updateGagnantTournoi()">Finir le tournoi</button> 
-  </ul>
+</ul>
+
+<div class="container">
+  <div *ngIf="tournoi?.gagnant != undefined">
+    <h1> Tournoi terminer !</h1>
+    <p> gagnant du tournoi : </p>
+    <p> {{ tournoi?.gagnant?.nom }} {{ tournoi?.gagnant?.prenom }} </p>
+  </div>
+</div>
   
 <div [ngbNavOutlet]="nav" class="mt-2"></div>
 
