@@ -141,4 +141,20 @@ export class VisualierTournoiComponent {
     return false;
   }
 
+  updateGagnantTournoi(): void {
+    if (this.tournoi && this.tournoi._id) {
+      const idTournoi = this.tournoi._id;
+      this.tournoiService.updateGagnantTournoi(idTournoi, this.tournoi).subscribe(
+        (response: any) => {
+          console.log(response.message);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    } else {
+      console.error('Tournoi non trouvé.');
+    }
+  }
+
 }

@@ -42,4 +42,9 @@ export class TournoiService {
     return this.httpClient.put<{ message: string }>(`/api/tournois/ajouter_match/${idTournoi}`, data);
   }
 
+  updateGagnantTournoi(idTournoi: string, tournoi: Tournoi): Observable<{ message: string }> {
+    const data = { tournoi };
+    return this.httpClient.put<{ message: string }>(`/api/tournois/${idTournoi}/gagnant`, data);
+  }
+
 }
