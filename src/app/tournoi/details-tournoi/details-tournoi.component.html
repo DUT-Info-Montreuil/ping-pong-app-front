@@ -8,7 +8,6 @@
                 <p> Niveau : {{ tournoi?.niveau }} </p>
                 <p> Date : {{ tournoi?.date }} </p>
                 <p> Durée du tournoi : {{ tournoi?.duree }} minutes </p>
-                <p> Nombre de match : {{ tournoi?.matchs?.length }}</p>
                 <p> Lieu : {{ tournoi?.lieu }} </p>
                 <div *ngIf="tournoi?.status">  
                     <button type="button" class="btn btn-primary" (click)="accederAuTournoi(tournoi)"> Visualiser le tournoi </button> 
@@ -26,6 +25,9 @@
                     <p> Durée : {{ match.duree }} minutes </p>
                     <div class="text-danger" *ngIf="match.resultat==0">
                         Résultat : le match n'a pas encore commencé
+                    </div>
+                    <div class="text-info" *ngIf="match.resultat==1">
+                        Résultat : le match est terminer, le gagnant est : {{ match.vainqueur.nom }} {{ match.vainqueur.prenom }}
                     </div>
                 </div>
             </div>
