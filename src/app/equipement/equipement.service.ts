@@ -3,23 +3,24 @@ import { Injectable } from '@angular/core';
 import { Equipement } from './model/equipement';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class EquipementService {
 
 
-  private apiUrl = '/api/equipement';
-
   constructor(private http: HttpClient) { }
 
+  private baseUrl = 'http://localhost:5000';
+
+
   getEquipementService(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+    return this.http.get<any>('http://localhost:5000/equipement/');
   }
 
 
-  modifierEquipement(idEquipement: string, donneesEquipement: any): Observable<any> {
-    return this.http.put(`/api/equipement/${idEquipement}`, donneesEquipement);
+  updateEquipement(id: string, equipement: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/equipement/${id}`, equipement);
   }
-
 }
