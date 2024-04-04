@@ -22,7 +22,7 @@ export class VisualierTournoiComponent {
   message: string|undefined = undefined
   tournoi:Tournoi|undefined = undefined;
   rounds: Match[][] = [];
-  ongoingMatches: boolean = false;
+  matchsEnCours: boolean = false;
 
   constructor(private tournoiService: TournoiService, private matchService: MatchService, private activateRoute: ActivatedRoute) {
     this.id = activateRoute.snapshot.params['id'];
@@ -72,18 +72,21 @@ export class VisualierTournoiComponent {
   }
 
   genererRounds(): void {
-    if (this.tournoi && this.tournoi.matchs) {
-      const nbMatchsPremierRound = this.tournoi.matchs.length; // Nombre de matchs dans le premier round
-      const nbMatchsParRound = Math.ceil(nbMatchsPremierRound / (this.tournoi.duree / 5)); // Nombre de matchs par round
-  
-      this.rounds = [];
-  
-      for (let i = 0; i < nbMatchsPremierRound; i += nbMatchsParRound) {
-        const roundMatches = this.tournoi.matchs.slice(i, i + nbMatchsParRound);
-        this.rounds.push(roundMatches);
-      }
-  
-      this.ongoingMatches = this.tournoi.matchs.some(match => match.resultat === 0);
+    if (this.tournoi && this.tournoi.matchs && this.tournoi.matchs.length > 0) {
+        const nbMatchsTotal = this.tournoi.matchs.length;
+        const nbMatchsParRound = Math.ceil(nbMatchsTotal / Math.ceil(nbMatchsTotal / 3));
+
+        this.rounds = [];
+        
+        let matchsTraites = 0;
+
+        while (matchsTraites < nbMatchsTotal) {
+            const roundMatches = this.tournoi.matchs.slice(matchsTraites, matchsTraites + nbMatchsParRound);
+            this.rounds.push(roundMatches);
+            matchsTraites += nbMatchsParRound;
+        }
+        
+        this.matchsEnCours = this.tournoi.matchs.some(match => match.resultat === 0);
     }
   }
   

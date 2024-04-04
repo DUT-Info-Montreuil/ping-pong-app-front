@@ -56,8 +56,8 @@
         <div *ngIf="round.length === 0">Pas de match dans ce round.</div>
       </ng-template>
     </li>
-    <button *ngIf="rounds.length < roundMax()" [disabled]="ongoingMatches" (click)="nouveauRound()" type="button" class="btn btn-primary">Nouveau round</button> 
-    <button *ngIf="rounds.length===roundMax()" [disabled]="ongoingMatches" type="button" class="btn btn-primary">Finir le tournoi</button> 
+    <button *ngIf="rounds.length < roundMax()" [disabled]="matchsEnCours" (click)="nouveauRound()" type="button" class="btn btn-primary">Nouveau round</button> 
+    <button *ngIf="rounds.length===roundMax()" [disabled]="matchsEnCours" type="button" class="btn btn-primary">Finir le tournoi</button> 
   </ul>
   
 <div [ngbNavOutlet]="nav" class="mt-2"></div>

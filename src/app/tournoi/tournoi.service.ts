@@ -39,7 +39,7 @@ export class TournoiService {
 
   ajouterMatchTournoi(idTournoi: string, matchs: Match[]): Observable<{ message: string }> {
     const data = { matchs };
-    return this.httpClient.post<{ message: string }>(`/api/tournois/ajouter_match/${idTournoi}`, data);
+    return this.httpClient.put<{ message: string }>(`/api/tournois/ajouter_match/${idTournoi}`, data);
   }
 
 }
