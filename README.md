@@ -2,6 +2,9 @@
 
 Groupe : Xiang Luc et Chabane Juba
 
+# Repo du back
+https://github.com/DUT-Info-Montreuil/SAE4-A-ping-pong-back.git
+
 # créer un tournoi 
 ![creer_tournoi](https://github.com/DUT-Info-Montreuil/ping-pong-app-front/assets/101273350/53a8fd25-a65a-4a95-882e-cf9027430405)
 ![creer_tournoi_2](https://github.com/DUT-Info-Montreuil/ping-pong-app-front/assets/101273350/83cdd32f-1835-4919-b7dc-14df57f718d8)
