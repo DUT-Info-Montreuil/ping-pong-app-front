@@ -28,7 +28,7 @@ export class JoueurService {
 
 
   ajouteJoueurDeFichier(fichier: FormData): Observable<any> {
-    return this.httpClient.put('/api/joueurs/add_fichier', fichier);
+    return this.httpClient.post('/api/joueurs//add_fichier', fichier);
   }
 
 }

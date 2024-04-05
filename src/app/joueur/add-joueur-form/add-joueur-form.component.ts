@@ -51,9 +51,11 @@ export class AddJoueurFormComponent implements OnInit {
       this.newJoueur.nom.trim() !== "" 
       && this.newJoueur.prenom.trim() !== "" 
       && this.newJoueur.categorie.age !== null
+      && this.newJoueur.categorie.age >= 0
+      && this.newJoueur.categorie.age <= 100
       && this.newJoueur.categorie.niveau.trim() !== ""
       && this.newJoueur.sexe.trim() !== ""
     );
-  }
+  }  
 
 }

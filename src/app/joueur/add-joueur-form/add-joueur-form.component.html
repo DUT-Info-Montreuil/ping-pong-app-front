@@ -1,5 +1,9 @@
 <div class="container"> 
     <h1> Formulaire création de joueur : </h1>
+    <div class="alert alert-danger" role="alert">
+      Veuillez valider tout les champs pour créer un nouveau joueur.
+      <span *ngIf="newJoueur.categorie.age < 0 || newJoueur.categorie.age > 100"> L'age doit etre entre 0 et 100. </span>
+    </div>
     <div class="d-flex justify-content-center mt-5">
         <form (ngSubmit)="addJoueur()" class="row g-3">
             <div class="col-md-6">
