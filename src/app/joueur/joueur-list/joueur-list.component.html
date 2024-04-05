@@ -2,15 +2,37 @@
     <h1>Liste joueurs :</h1>
 </div>
 
-<div class="d-flex justify-content-center mt-3">
-    <div *ngFor="let joueur of joueurs" class="m-3">
-        <p>Nom: {{ joueur.nom }}</p>
-        <p>Prénom: {{ joueur.prenom }}</p> 
-        <p>Niveau: {{ joueur.categorie.niveau }} </p>
-        <p>Sexe: {{ joueur.sexe }}</p>
-        <button type="button" class="btn btn-outline-info" (click)="onClickOpenDetails(joueur)">Details</button>
-    </div>
+<div class="container mt-3">
+  <div class="row justify-content-center">
+      <div class="col-md-8">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th scope="col">Nom</th>
+                      <th scope="col">Prénom</th>
+                      <th scope="col">Niveau</th>
+                      <th scope="col">Age</th>
+                      <th scope="col">Sexe</th>
+                      <th scope="col">Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let joueur of joueurs">
+                      <td>{{ joueur.nom }}</td>
+                      <td>{{ joueur.prenom }}</td>
+                      <td>{{ joueur.categorie.niveau }}</td>
+                      <td>{{ joueur.categorie.age }}</td>
+                      <td>{{ joueur.sexe }}</td>
+                      <td>
+                          <button type="button" class="btn btn-outline-info" (click)="onClickOpenDetails(joueur)">Détails</button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
 </div>
+
 
 
 <div class="form-group mt-3">
