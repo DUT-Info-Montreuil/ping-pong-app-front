@@ -7,7 +7,7 @@ import { Match } from '../../match/model/Match';
 import { FormsModule } from '@angular/forms';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatchService } from '../../match/match.service';
-import { Joueur } from '../../joueur/model/Joueur';
+import { Joueur } from '../../joueur/model/Joueur';;
 
 @Component({
   selector: 'app-visualier-tournoi',

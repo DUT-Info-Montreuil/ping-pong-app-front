@@ -107,6 +107,18 @@
               </div>   
 		</ng-template>
 	</li>
+  <li ngbNavItem>
+    <button ngbNavLink>Supprimer tournoi</button>
+    <ng-template ngbNavContent>
+        <div *ngIf="tournoi" class="container mt-5 text-center">
+            <div class="alert alert-danger" role="alert">
+                Êtes-vous sûr de vouloir supprimer ce tournoi ?
+            </div>
+            <button class="btn btn-danger" (click)="supprimerTournoi()">Supprimer</button>
+        </div>
+    </ng-template>
+    </li>
+
     <li *ngIf="!tournoi?.status" ngbNavItem>
         <button ngbNavLink>Lancer tournoi</button>
         <ng-template ngbNavContent>

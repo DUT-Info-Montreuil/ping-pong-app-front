@@ -87,5 +87,15 @@ export class DetailsTournoiComponent {
       );
     }
   }
+
+  supprimerTournoi() {
+    if(this.tournoi) {
+      this.tournoiService.deleteTournoi(this.tournoi._id).subscribe(
+        (next) => {
+          this.router.navigate(['/liste-tournoi']);
+        }
+      );
+    }
+  }
   
 }

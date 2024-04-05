@@ -51,4 +51,8 @@ export class TournoiService {
     return this.httpClient.put(`/api/tournois/${id}`, tournoi);
   }
 
+  deleteTournoi(id: string) {
+    return this.httpClient.delete(`/api/tournois/${id}`);
+  }
+
 }
