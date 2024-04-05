@@ -30,7 +30,7 @@ export class FormCreerTournoiComponent implements OnInit{
 	pageSize = 4;
   collectionSize = 0;
   joueursTab: Joueur[] = []
-  
+
   durees: number[] = [5, 10, 15, 20, 25, 30];
 
   newTournoi: NewTournoi = {
@@ -66,7 +66,7 @@ export class FormCreerTournoiComponent implements OnInit{
   }
 
   getAllEquipements() {
-    this.equipementService.getAllEquipement().subscribe(
+    this.equipementService.getEquipementService().subscribe(
       (next) => {
         this.equipements = next;
       }, (error) => {
@@ -132,7 +132,7 @@ export class FormCreerTournoiComponent implements OnInit{
       this.refreshPaginations();
     }
   }
-  
+
   refreshPaginations() {
     this.joueursTab = this.joueurs.slice(
       (this.page - 1) * this.pageSize,
@@ -140,7 +140,7 @@ export class FormCreerTournoiComponent implements OnInit{
     );
   }
 
-  verifEtape1(): boolean { 
+  verifEtape1(): boolean {
     return this.newTournoi.niveau === '' || this.newTournoi.duree === 0 || this.newTournoi.lieu === '';
   }
 
@@ -159,5 +159,5 @@ export class FormCreerTournoiComponent implements OnInit{
   verifJoueursPair(): boolean {
     return this.joueurs_tournoi.length %2 != 0 || this.joueurs_tournoi.length == 0;
   }
-  
+
 }

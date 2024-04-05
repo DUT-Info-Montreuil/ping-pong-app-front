@@ -7,6 +7,8 @@ import { ResponseComponent } from './response/response/response.component';
 import { ListTournoisComponent } from './tournoi/list-tournois/list-tournois.component';
 import { DetailsTournoiComponent } from './tournoi/details-tournoi/details-tournoi.component';
 import { VisualierTournoiComponent } from './tournoi/visualier-tournoi/visualier-tournoi.component';
+import {StockEquipementsComponent} from "./equipement/stock-equipements/stock-equipements.component";
+import {MajEquipementComponent} from "./equipement/maj-equipement/maj-equipement.component";
 
 
 export const routes: Routes = [
@@ -17,5 +19,10 @@ export const routes: Routes = [
     { path: 'success', component: ResponseComponent},
     { path: 'liste-tournoi', component: ListTournoisComponent},
     { path: 'tournoi/:id', component: DetailsTournoiComponent},
-    { path: 'visualiser-tournoi/:id', component:VisualierTournoiComponent}
+    { path: 'visualiser-tournoi/:id', component:VisualierTournoiComponent},
+    { path: 'success', component: ResponseComponent},
+    { path: 'stock-equipement', component: StockEquipementsComponent},
+    { path: 'maj-equipement', component: MajEquipementComponent}
+
+
 ];

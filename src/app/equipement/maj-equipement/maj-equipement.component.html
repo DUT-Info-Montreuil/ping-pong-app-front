@@ -1,0 +1,69 @@
+<div class="update-equipement">
+  <h2>Mise à jour de l'équipement</h2>
+  <form [formGroup]="equipementForm" (ngSubmit)="onSubmit()">
+    <div formGroupName="table_tenis">
+      <h3>Table de Tennis</h3>
+      <mat-form-field appearance="fill">
+        <mat-label>Quantité</mat-label>
+        <input matInput formControlName="quantité" type="number">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>État</mat-label>
+        <input matInput formControlName="état">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Disponibilité</mat-label>
+        <input matInput formControlName="disponibilité">
+      </mat-form-field>
+    </div>
+    <div formGroupName="filet">
+      <h3>Filet</h3>
+      <mat-form-field appearance="fill">
+        <mat-label>Quantité</mat-label>
+        <input matInput formControlName="quantité" type="number">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>État</mat-label>
+        <input matInput formControlName="état">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Disponibilité</mat-label>
+        <input matInput formControlName="disponibilité">
+      </mat-form-field>
+    </div>
+
+    <div formGroupName="balle">
+      <h3>Balle</h3>
+      <mat-form-field appearance="fill">
+        <mat-label>Quantité</mat-label>
+        <input matInput formControlName="quantité" type="number">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>État</mat-label>
+        <input matInput formControlName="état">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Disponibilité</mat-label>
+        <input matInput formControlName="disponibilité">
+      </mat-form-field>
+    </div>
+
+    <div formGroupName="marqueur">
+      <h3>Marqueur</h3>
+      <mat-form-field appearance="fill">
+        <mat-label>Quantité</mat-label>
+        <input matInput formControlName="quantité" type="number">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>État</mat-label>
+        <input matInput formControlName="état">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Disponibilité</mat-label>
+        <input matInput formControlName="disponibilité">
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="primary" type="submit">Mettre à jour</button>
+  </form>
+</div>
