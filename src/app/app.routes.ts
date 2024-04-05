@@ -8,6 +8,7 @@ import { ListTournoisComponent } from './tournoi/list-tournois/list-tournois.com
 import { DetailsTournoiComponent } from './tournoi/details-tournoi/details-tournoi.component';
 import { VisualierTournoiComponent } from './tournoi/visualier-tournoi/visualier-tournoi.component';
 import {StockEquipementsComponent} from "./equipement/stock-equipements/stock-equipements.component";
+import {PageAcceuilComponent} from "./page-acceuil/page-acceuil.component";
 
 
 export const routes: Routes = [
@@ -19,5 +20,6 @@ export const routes: Routes = [
     { path: 'liste-tournoi', component: ListTournoisComponent},
     { path: 'tournoi/:id', component: DetailsTournoiComponent},
     { path: 'visualiser-tournoi/:id', component:VisualierTournoiComponent},
-    { path: 'stock-equipement', component: StockEquipementsComponent}
+    { path: 'stock-equipement', component: StockEquipementsComponent},
+    { path: '', component: PageAcceuilComponent }
 ];
