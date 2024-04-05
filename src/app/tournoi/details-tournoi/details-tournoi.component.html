@@ -60,6 +60,53 @@
               </ul> 
 		</ng-template>
 	</li>
+    <li ngbNavItem>
+		<button ngbNavLink>Modifier tournoi</button>
+		<ng-template ngbNavContent>
+            <div *ngIf="tournoi" class="container mt-5">
+                <h1>Modifier le tournoi</h1>
+                <form (submit)="modifierTournoi()">
+                    <div class="mb-3">
+                      <label for="niveau" class="form-label">Niveau</label>
+                      <select class="form-select" id="niveau" name="niveau" [(ngModel)]="tournoi.niveau">
+                        <option value="Débutant">Débutant</option>
+                        <option value="Intermédiaire">Intermédiaire</option>
+                        <option value="Expert">Expert</option>
+                        <option value="Mixte">Mixte</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="date" class="form-label">Date</label>
+                      <input type="date" class="form-control" id="date" name="date" [(ngModel)]="tournoi.date" />
+                    </div>
+                    <div class="mb-3">
+                      <label for="duree" class="form-label">Durée (en minute)</label>
+                      <select class="form-select" id="duree" name="duree" [(ngModel)]="tournoi.duree">
+                        <option *ngFor="let duree of durees" [value]="duree">{{ duree }}</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="lieu" class="form-label">Lieu</label>
+                      <select class="form-select" id="lieu" name="lieu" [(ngModel)]="tournoi.lieu">
+                        <option value="Salle de sport">Salle de sport</option>
+                        <option value="Salle polyvalente">Salle polyvalente</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status du tournoi</label>
+                        <select class="form-select" id="status" name="status" [(ngModel)]="tournoi.status">
+                          <option value="true">Ouvrir</option>
+                          <option value="false">Fermer</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                  </form>
+                  <div *ngIf='message!=""' class="alert alert-success" role="alert">
+                     {{message}}
+                  </div>
+              </div>   
+		</ng-template>
+	</li>
     <li *ngIf="!tournoi?.status" ngbNavItem>
         <button ngbNavLink>Lancer tournoi</button>
         <ng-template ngbNavContent>

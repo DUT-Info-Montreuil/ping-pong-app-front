@@ -47,4 +47,8 @@ export class TournoiService {
     return this.httpClient.put<{ message: string }>(`/api/tournois/${idTournoi}/gagnant`, data);
   }
 
+  updateTournoi(id: string, tournoi: NewTournoi): Observable<any> {
+    return this.httpClient.put(`/api/tournois/${id}`, tournoi);
+  }
+
 }
