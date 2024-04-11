@@ -4,9 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-page-acceuil',
   standalone: true,
   imports: [],
-  templateUrl: './page-acceuil.component.html',
-  styleUrl: './page-acceuil.component.css'
+  templateUrl: './page-accueil.component.html',
+  styleUrl: './page-accueil.component.css'
 })
-export class PageAcceuilComponent {
+export class PageAccueilComponent {
 
 }
