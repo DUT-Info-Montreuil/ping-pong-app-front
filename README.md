@@ -2,6 +2,9 @@
 
 Groupe : Xiang Luc et Chabane Juba
 
+# trello 
+https://trello.com/invite/b/XWUi6Cs5/ATTIddff57b23376d8c82f8360c16425ad35CD1F61D8/saes4a01
+
 # Repo du back
 https://github.com/DUT-Info-Montreuil/SAE4-A-ping-pong-back.git
 
