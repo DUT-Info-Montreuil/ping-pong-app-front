@@ -1,0 +1,144 @@
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
+  
+	<li ngbNavItem>
+		<button ngbNavLink> Information du tournoi </button>
+		<ng-template ngbNavContent>
+            <div class="container mt-5">
+                <h1> Détails du tournoi </h1>
+                <p> Format : {{ tournoi?.format }} </p>
+                <p> Niveau : {{ tournoi?.niveau }} </p>
+                <p> Date : {{ tournoi?.date }} </p>
+                <p> Durée du tournoi : {{ tournoi?.duree }} minutes </p>
+                <p> Lieu : {{ tournoi?.lieu }} </p>
+                <div *ngIf="tournoi?.status">  
+                    <button type="button" class="btn btn-primary" (click)="accederAuTournoi(tournoi)"> Visualiser le tournoi </button> 
+                </div>
+            </div>
+		</ng-template>
+	</li>
+
+	<li ngbNavItem>
+		<button ngbNavLink> Les matchs du tournoi </button>
+		<ng-template ngbNavContent>
+			<div class="container">
+                <div *ngFor="let match of tournoi?.matchs; let i = index">
+                    <h1> Match numéro : {{ i+1 }}</h1>
+                    <p> Joueurs du match : {{ match.joueur_1.nom }} {{ match.joueur_1.prenom }} CONTRE {{ match.joueur_2.nom}} {{ match.joueur_2.prenom }} </p>
+                    <p> Durée : {{ match.duree }} minutes </p>
+                    <div class="text-danger" *ngIf="match.resultat==0">
+                        Résultat : le match n'a pas encore commencé
+                    </div>
+                    <div class="text-info" *ngIf="match.resultat==1">
+                        Résultat : le match est terminer, le gagnant est : {{ match.vainqueur.nom }} {{ match.vainqueur.prenom }}
+                    </div>
+                </div>
+            </div>
+		</ng-template>
+	</li>
+
+	<li ngbNavItem>
+		<button ngbNavLink>Les équipements</button>
+		<ng-template ngbNavContent>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <h5 class="card-title">Table de ping-pong</h5>
+                    <p class="card-text">Quantité : {{ tournoi?.equipement?.table?.quantite }} </p>
+                    <p class="card-text text-success">Etat : {{ tournoi?.equipement?.table?.etat }} </p>
+                </li>
+                <li class="list-group-item">
+                    <h5 class="card-title">Balle</h5>
+                    <p class="card-text">Quantité : {{ tournoi?.equipement?.balle?.quantite }} </p>
+                    <p class="card-text text-success">Etat : {{ tournoi?.equipement?.balle?.etat }} </p>
+                </li>
+                <li class="list-group-item">
+                    <h5 class="card-title">Fillet</h5>
+                    <p class="card-text">Quantité : {{ tournoi?.equipement?.fillet?.quantite }} </p>
+                    <p class="card-text text-success">Etat : {{ tournoi?.equipement?.fillet?.etat }} </p>
+                </li>
+                <li class="list-group-item">
+                    <h5 class="card-title">Marqueur</h5>
+                    <p class="card-text">Quantité : {{ tournoi?.equipement?.marqueur?.quantite }} </p>
+                    <p class="card-text text-success">Etat : {{ tournoi?.equipement?.marqueur?.etat }} </p>
+                </li>
+              </ul> 
+		</ng-template>
+	</li>
+
+    <li ngbNavItem>
+		<button ngbNavLink>Modifier tournoi</button>
+		<ng-template ngbNavContent>
+            <div *ngIf="tournoi" class="container mt-5">
+                <h1>Modifier le tournoi</h1>
+                <form (submit)="modifierTournoi()">
+                    <div class="mb-3">
+                      <label for="niveau" class="form-label">Niveau</label>
+                      <select class="form-select" id="niveau" name="niveau" [(ngModel)]="tournoi.niveau">
+                        <option value="Débutant">Débutant</option>
+                        <option value="Intermédiaire">Intermédiaire</option>
+                        <option value="Expert">Expert</option>
+                        <option value="Mixte">Mixte</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="date" class="form-label">Date</label>
+                      <input type="date" class="form-control" id="date" name="date" [(ngModel)]="tournoi.date" />
+                    </div>
+                    <div class="mb-3">
+                      <label for="duree" class="form-label">Durée (en minute)</label>
+                      <select class="form-select" id="duree" name="duree" [(ngModel)]="tournoi.duree">
+                        <option *ngFor="let duree of durees" [value]="duree">{{ duree }}</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="lieu" class="form-label">Lieu</label>
+                      <select class="form-select" id="lieu" name="lieu" [(ngModel)]="tournoi.lieu">
+                        <option value="Salle de sport">Salle de sport</option>
+                        <option value="Salle polyvalente">Salle polyvalente</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status du tournoi</label>
+                        <select class="form-select" id="status" name="status" [(ngModel)]="tournoi.status">
+                          <option value="true">Ouvrir</option>
+                          <option value="false">Fermer</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                  </form>
+                  <div *ngIf='message!=""' class="alert alert-success" role="alert">
+                     {{message}}
+                  </div>
+              </div>   
+		</ng-template>
+	</li>
+
+  <li ngbNavItem>
+    <button ngbNavLink>Supprimer tournoi</button>
+    <ng-template ngbNavContent>
+        <div *ngIf="tournoi" class="container mt-5 text-center">
+            <div class="alert alert-danger" role="alert">
+                Êtes-vous sûr de vouloir supprimer ce tournoi ?
+            </div>
+            <button class="btn btn-danger" (click)="supprimerTournoi()">Supprimer</button>
+        </div>
+    </ng-template>
+    </li>
+
+    <li *ngIf="!tournoi?.status" ngbNavItem>
+        <button ngbNavLink>Lancer tournoi</button>
+        <ng-template ngbNavContent>
+            <div class="card" style="width: 550px;">
+                <div class="card-header">
+                    Lancement du tournoi
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Voulez-vous commencer le tournoi ?</h5>
+                    <p class="card-text">Veuillez confirmer si vous souhaitez démarrer le tournoi.</p>
+                    <button type="button" class="btn btn-primary" (click)="updateStatusTournoi(tournoi)">Commencer le tournoi</button>
+                </div>
+            </div>            
+        </ng-template>
+    </li>
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-center mt-3">
+    <div *ngIf="joueur" class="m-3">
+        <h1> Détails : </h1>
+        <p>Nom: {{ joueur.nom }}</p>
+        <p>Prénom: {{ joueur.prenom }}</p>
+        <p>Catégorie:</p>
+        <ul>
+            <li>
+                Age: {{ joueur.categorie.age }}
+            </li>
+            <li>
+                Niveau: {{ joueur.categorie.niveau }}
+            </li>
+        </ul>
+        <p>Sexe: {{ joueur.sexe }}</p>
+        <p>Point: {{ joueur.point }}</p>
+    </div>
+</div>

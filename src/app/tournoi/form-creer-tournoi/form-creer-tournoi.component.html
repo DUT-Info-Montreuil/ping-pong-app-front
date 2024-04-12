@@ -1,0 +1,370 @@
+<div class="container mt-5 justify-content-center">
+  <h1 class="d-flex justify-content-center">Créer un tournoi</h1>
+
+  <div *ngIf="etape === 1">
+    <div class="position-relative m-4">
+      <div
+        class="progress"
+        role="progressbar"
+        aria-label="Progress"
+        aria-valuenow="50"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        style="height: 1px"
+      >
+        <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
+      </div>
+      <button
+        id="button1"
+        type="button"
+        class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        1
+      </button>
+      <button
+        id="button2"
+        type="button"
+        class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-secondary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        2
+      </button>
+      <button
+        id="button3"
+        type="button"
+        class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        3
+      </button>
+    </div>
+    <div class="w-50 mx-auto">
+      <div *ngIf="verifEtape1()" class="alert alert-danger" role="alert">
+        Compléter les informations suivantes : Niveau, Date, Durée et Lieu
+      </div>
+      <form (ngSubmit)="addTournoi()">
+        <div class="mb-3">
+          <label for="format" class="form-label">Format</label>
+          <input
+            type="text"
+            class="form-control"
+            id="format"
+            name="format"
+            [(ngModel)]="newTournoi.format"
+            disabled
+          />
+        </div>
+        <div class="mb-3">
+          <label for="niveau" class="form-label">Niveau</label>
+          <select
+            class="form-select"
+            id="niveau"
+            name="niveau"
+            [(ngModel)]="newTournoi.niveau"
+            (change)="getAllJoueurs()"
+          >
+            <option value="Débutant">Débutant</option>
+            <option value="Intermédiaire">Intermédiaire</option>
+            <option value="Expert">Expert</option>
+            <option value="Mixte">Mixte</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="date" class="form-label">Date</label>
+          <input
+            type="date"
+            class="form-control"
+            id="date"
+            name="date"
+            [(ngModel)]="newTournoi.date"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="duree" class="form-label">Durée (en minute)</label>
+          <select
+            class="form-select"
+            id="duree"
+            name="duree"
+            [(ngModel)]="newTournoi.duree"
+          >
+            <option *ngFor="let duree of durees" [value]="duree">
+              {{ duree }}
+            </option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="lieu" class="form-label">Lieu</label>
+          <select
+            class="form-select"
+            id="lieu"
+            name="lieu"
+            [(ngModel)]="newTournoi.lieu"
+          >
+            <option value="Salle de sport">Salle de sport</option>
+            <option value="Salle polyvalente">Salle polyvalente</option>
+          </select>
+        </div>
+      </form>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="avancerEtape()"
+        [disabled]="verifEtape1()"
+      >
+        Suivant
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="etape === 2">
+    <div class="position-relative m-4">
+      <div
+        class="progress"
+        role="progressbar"
+        aria-label="Progress"
+        aria-valuenow="50"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        style="height: 1px"
+      >
+        <div id="progress-bar" class="progress-bar" style="width: 50%"></div>
+      </div>
+      <button
+        id="button1"
+        type="button"
+        class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        1
+      </button>
+      <button
+        id="button2"
+        type="button"
+        class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-primary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        2
+      </button>
+      <button
+        id="button3"
+        type="button"
+        class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        3
+      </button>
+    </div>
+    <div class="w-50 mx-auto">
+      <div class="alert alert-info" role="alert">
+        Pour ajouter l'équipement au tournoi, appuyez sur le bouton 'louer'.
+      </div>
+        <div class="card">
+          <div class="card-header">
+            Equipement en stock :
+          </div>
+          <div class="card-body">
+            <ul *ngFor="let equipement of equipements;" class="list-group">
+              <div *ngIf="equipement">
+                <li *ngIf="equipement.table.disponibilite" class="list-group-item">
+                  <h5 class="card-title">Table de ping-pong</h5>
+                  <p class="card-text">Quantité : {{ equipement.table.quantite }} </p>
+                  <p class="card-text text-success">Etat : {{ equipement.table.etat }} </p>
+                </li>
+                <li *ngIf="equipement.balle.disponibilite" class="list-group-item">
+                  <h5 class="card-title">Balle</h5>
+                  <p class="card-text">Quantité : {{ equipement.balle.quantite }} </p>
+                  <p class="card-text text-success">Etat : {{ equipement.balle.etat }} </p>
+                </li>
+                <li *ngIf="equipement.fillet.disponibilite" class="list-group-item">
+                  <h5 class="card-title">Fillet</h5>
+                  <p class="card-text">Quantité : {{ equipement.fillet.quantite }} </p>
+                  <p class="card-text text-success">Etat : {{ equipement.fillet.etat }} </p>
+                </li>
+                <li *ngIf="equipement.marqueur.disponibilite" class="list-group-item">
+                  <h5 class="card-title">Marqueur</h5>
+                  <p class="card-text">Quantité : {{ equipement.marqueur.quantite }} </p>
+                  <p class="card-text text-success">Etat : {{ equipement.marqueur.etat }} </p>
+                </li>
+                <button
+                type="submit"
+                class="btn btn-primary"
+                (click)="addEquipementTournoi(equipement)"
+                [disabled]="!verifEtape2()"
+                >
+                Louer
+                </button>
+
+                <button
+                type="submit"
+                class="btn btn-danger"
+                (click)="retirerEquipementTournoi()"
+                [disabled]="verifEtape2()"
+                >
+                Retirer
+                </button>
+              </div>
+            </ul> 
+            <div  *ngIf="equipements.length <= 0">
+              <p> Aucun équipement n'est disponible. </p>
+            </div>
+          </div>
+        </div>
+      <button type="submit" class="btn btn-primary" (click)="reculerEtape()">
+        Revenir
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="avancerEtape()"
+        [disabled]="verifEtape2()"
+      >
+        Suivant
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="etape === 3">
+    <div class="position-relative m-4">
+      <div
+        class="progress"
+        role="progressbar"
+        aria-label="Progress"
+        aria-valuenow="50"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        style="height: 1px"
+      >
+        <div id="progress-bar" class="progress-bar" style="width: 100%"></div>
+      </div>
+      <button
+        id="button1"
+        type="button"
+        class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        1
+      </button>
+      <button
+        id="button2"
+        type="button"
+        class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-primary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        2
+      </button>
+      <button
+        id="button3"
+        type="button"
+        class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-primary rounded-pill"
+        style="width: 2rem; height: 2rem"
+      >
+        3
+      </button>
+    </div>
+    <div class="w-50 mx-auto">
+      <div class="alert alert-info" role="alert">
+        Appuyez sur 'ajouter' pour que le joueur puisse participer au tournoi.
+        (Le nombre maximal de joueur pouvant etre choisi est de :
+        {{ getJoueursMax() }})
+      </div>
+
+      <div *ngIf="verifJoueursPair()" class="alert alert-danger" role="alert">
+        Le nombre de joueur(s) choisi doit etre paire afin que tout les matchs
+        puissent etre effectué !
+      </div>
+      
+      <div *ngIf="joueursTab.length > 0">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Prénom</th>
+              <th scope="col">Niveau</th>
+              <th scope="col">Age</th>
+              <th scope="col">Sexe</th>
+              <th scope="col">Points</th>
+              <th scope="col">Ajouter</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let joueur of joueursTab; let i = index">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ joueur.nom }}</td>
+              <td>{{ joueur.prenom }}</td>
+              <td>{{ joueur.categorie.niveau }}</td>
+              <td>{{ joueur.categorie.age }}</td>
+              <td>{{ joueur.sexe }}</td>
+              <td>{{ joueur.point }}</td>
+              <td>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  (click)="addJoueurToTournoi(joueur)"
+                  [disabled]="joueursMaxAtteint()"
+                >
+                  Ajouter
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination
+            [collectionSize]="collectionSize"
+            [(page)]="page"
+            [pageSize]="pageSize"
+            (pageChange)="refreshPaginations()"
+          >
+          </ngb-pagination>
+        </div>
+
+      </div>
+
+      <div *ngIf="joueursTab.length<=0">
+        <div class="alert alert-warning" role="alert">
+          Aucun joueur disponible dans les catégories que vous avez choisi !
+          <a href="/form-joueur">Appuyez ici pour créer un joueur.</a>
+        </div>
+      </div>
+
+      <div *ngIf="joueurs_tournoi.length > 0">
+        <h5>Ma liste de joueur(s)</h5>
+        <div class="alert alert-warning" role="alert">
+          Cliquez sur un joueur pour le retiré de la liste.
+        </div>
+
+        <div
+          class="list-group"
+          *ngFor="let joueur of joueurs_tournoi; let i = index"
+        >
+          <button
+            type="button"
+            class="list-group-item list-group-item-action"
+            (click)="retirerJoueurDansTournoi(joueur)"
+          >
+            {{ joueur.nom }} {{ joueur.prenom }} {{ joueur.categorie.niveau }}
+            {{ joueur.categorie.age }} an {{ joueur.sexe }} Point :
+            {{ joueur.point }}
+          </button>
+        </div>
+      </div>
+
+      <br />
+
+      <button type="submit" class="btn btn-primary" (click)="reculerEtape()">
+        Revenir
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="addTournoi()"
+        [disabled]="verifJoueursPair()"
+      >
+        Ajouter le tournoi
+      </button>
+    </div>
+  </div>
+</div>

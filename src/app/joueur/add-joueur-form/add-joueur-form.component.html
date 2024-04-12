@@ -1,0 +1,56 @@
+<div class="container"> 
+    <h1> Formulaire création de joueur : </h1>
+    <div class="alert alert-danger" role="alert">
+      Veuillez valider tout les champs pour créer un nouveau joueur.
+      <span *ngIf="newJoueur.categorie.age < 0 || newJoueur.categorie.age > 100"> L'age doit etre entre 0 et 100. </span>
+    </div>
+    <div class="d-flex justify-content-center mt-5">
+        <form (ngSubmit)="addJoueur()" class="row g-3">
+            <div class="col-md-6">
+              <label for="nom" class="form-label">Nom :</label>
+              <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="newJoueur.nom" required>
+            </div>
+            <div class="col-md-6">
+              <label for="prenom" class="form-label">Prénom :</label>
+              <input type="text" class="form-control" id="prenom" name="prenom" [(ngModel)]="newJoueur.prenom" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Âge :</label>
+              <input type="number" class="form-control" [(ngModel)]="newJoueur.categorie.age" name="age" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Niveau :</label>
+              <div>
+                <input type="radio" id="debutant" name="niveau" [(ngModel)]="newJoueur.categorie.niveau" value="Débutant" required>
+                <label for="debutant">Débutant</label>
+              </div>
+              <div>
+                <input type="radio" id="intermediaire" name="niveau" [(ngModel)]="newJoueur.categorie.niveau" value="Intermédiaire">
+                <label for="intermediaire">Intermédiaire</label>
+              </div>
+              <div>
+                <input type="radio" id="expert" name="niveau" [(ngModel)]="newJoueur.categorie.niveau" value="Expert">
+                <label for="expert">Expert</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Sexe :</label>
+              <div>
+                <input type="radio" id="masculin" name="sexe" [(ngModel)]="newJoueur.sexe" value="Masculin" required>
+                <label for="masculin">Masculin</label>
+              </div>
+              <div>
+                <input type="radio" id="feminin" name="sexe" [(ngModel)]="newJoueur.sexe" value="Féminin">
+                <label for="feminin">Féminin</label>
+              </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary" [disabled]="!isFormValid()">Créer Joueur</button>
+            </div>
+          </form>        
+    </div>
+    <br>
+    <div *ngIf="response" class="alert alert-success" role="alert">
+      <p> {{ response.message }} </p>
+  </div>  
+</div>

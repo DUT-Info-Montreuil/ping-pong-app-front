@@ -1,0 +1,37 @@
+<h1>Équipement en stock :</h1>
+<div class="card-body">
+  <ul *ngFor="let equipement of equipements;" class="list-group">
+    <div *ngIf="equipement">
+      <!-- Table de ping-pong -->
+      <li *ngIf="equipement.table.disponibilite" class="list-group-item">
+        <img src="../../../assets/images-equipement/image-table.png" alt="Table de ping-pong" style="width:50px;height:50px;">
+        <h5 class="card-title">Table de ping-pong</h5>
+        <p class="card-text">Quantité : {{ equipement.table.quantite }}</p>
+        <p class="card-text text-success">État : {{ equipement.table.etat }}</p>
+
+      </li>
+      <!-- Balle -->
+      <li *ngIf="equipement.balle.disponibilite" class="list-group-item">
+        <img src="../../../assets/images-equipement/image-balle.jpg" alt="Balle de ping-pong" style="width:50px;height:50px;">
+        <h5 class="card-title">Balle</h5>
+        <p class="card-text">Quantité : {{ equipement.balle.quantite }}</p>
+        <p class="card-text text-success">État : {{ equipement.balle.etat }}</p>
+      </li>
+      <!-- Fillet -->
+      <li *ngIf="equipement.fillet.disponibilite" class="list-group-item">
+        <img src="../../../assets/images-equipement/image-fillet.jpg" alt="Fillet" style="width:50px;height:50px;">
+        <h5 class="card-title">Fillet</h5>
+        <p class="card-text">Quantité : {{ equipement.fillet.quantite }}</p>
+        <p class="card-text text-success">État : {{ equipement.fillet.etat }}</p>
+      </li>
+      <!-- Marqueur -->
+      <li *ngIf="equipement.marqueur.disponibilite" class="list-group-item">
+        <img src="../../../assets/images-equipement/image-marqueur.jpg" alt="Marqueur" style="width:50px;height:50px;">
+        <h5 class="card-title">Marqueur</h5>
+        <p class="card-text">Quantité : {{ equipement.marqueur.quantite }}</p>
+        <p class="card-text text-success">État : {{ equipement.marqueur.etat }}</p>
+      </li>
+    </div>
+  </ul>
+</div>
+
