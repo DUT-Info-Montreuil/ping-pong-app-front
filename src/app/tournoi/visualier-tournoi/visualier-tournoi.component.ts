@@ -45,7 +45,7 @@ export class VisualierTournoiComponent {
   }
 
   updateScore(match: Match): void {
-    if(this.tournoi) {
+    if(this.tournoi && match.scoreJ1 != undefined && match.scoreJ2 != undefined) {
       this.tournoiService.updateMatchTournoiScore(this.tournoi?._id, match._id, match.scoreJ1, match.scoreJ2).subscribe(
         (next: any) => {
           this.message = next.message;
@@ -59,7 +59,7 @@ export class VisualierTournoiComponent {
   }
 
   finirMatchDansTournoi(match: Match): void {
-    if(this.tournoi)
+    if(this.tournoi && match.scoreJ1 != undefined && match.scoreJ2 != undefined)
     this.tournoiService.finirMatchTournoi(this.tournoi._id, match._id, match.scoreJ1, match.scoreJ2).subscribe(
       (response) => {
         console.log(response.message);

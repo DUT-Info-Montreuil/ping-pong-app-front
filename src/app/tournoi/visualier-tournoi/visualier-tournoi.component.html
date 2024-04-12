@@ -12,7 +12,9 @@
                       <div class="card-header text-center">
                         Score
                         <br>
-                        {{ match.scoreJ1 }} - {{ match.scoreJ2 }}
+                        <div *ngIf="match.scoreJ1 != undefined && match.scoreJ2 != undefined">
+                          {{ match.scoreJ1 }} - {{ match.scoreJ2 }}
+                        </div>
                       </div>
                       <div class="card-body">
                         <div class="row">
@@ -79,7 +81,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div *ngIf="!isValidScore(match.scoreJ2) || !isValidScore(match.scoreJ1)" class="text-danger">Veuillez saisir un nombre entre 0 et 11</div>
+                    <div *ngIf="match.scoreJ1 != undefined && match.scoreJ2 != undefined">
+                      <div *ngIf="!isValidScore(match.scoreJ2) || !isValidScore(match.scoreJ1)" class="text-danger">Veuillez saisir un nombre entre 0 et 11</div>
+                    </div>
                     <div class="form-floating mb-3">
                         <input type="number" class="form-control" id="scoreJ1" placeholder="Score joueur 1" [(ngModel)]="match.scoreJ1" min="0" max="11">
                         <label for="floatingInput">Score joueur 1</label>
@@ -96,7 +100,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary" [disabled]="!isValidScore(match.scoreJ2) || !isValidScore(match.scoreJ1)" (click)="updateScore(match)">Confirmer</button>
+                    <div *ngIf="match.scoreJ1 != undefined && match.scoreJ2 != undefined">
+                      <button type="button" class="btn btn-primary" [disabled]="!isValidScore(match.scoreJ2) || !isValidScore(match.scoreJ1)" (click)="updateScore(match)">Confirmer</button>
+                    </div>
                 </div>
             </div>
         </div>
